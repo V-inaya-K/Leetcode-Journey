@@ -4470,3 +4470,533 @@
 //     }
 //     cout<<result;
 // }
+
+//SMALLEST NUMBERS WITH ALL SET BITS (3370)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int n = 514;
+//     int limit=0;
+//     for(int i=1;i<=10;i++){
+//         if(n<pow(2,i)){
+//             limit+=i;
+//             break;
+//         }
+//     }
+//     cout<<pow(2,limit)-1;
+// }
+
+//Minimum Number of Increments on Subarrays to Form a Target Array (1526)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<int> target={3,1,5,4,2};
+//     int result=target[0];//as first element occur target[0] times{can be seen from examples}
+//     for(int i=1;i<target.size();++i){
+//         if(target[i]>target[i-1]){
+//             result+=target[i]-target[i-1];
+//         }
+//     }
+//     cout<<result;
+// }
+
+//THE TWO SNEAKY NUMBERS OF DIGITVILLE (3289)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<int> nums={7,1,5,4,3,4,6,0,9,5,8,2};
+//     unordered_map<int,int> mp;
+//     mp.reserve(nums.size());//to reserve space for optimization
+//     for (int num : nums){
+//         mp[num]++;
+//     }
+//     vector<int> result;
+//     result.reserve(nums.size());
+//     for (auto &[val, cnt] : mp){ //to find [value,count] pair
+//         if (cnt == 2){
+//             result.push_back(val);
+//         }
+//     }
+//     for (int num : result){
+//         cout<<num<<" ";
+//     }
+// }
+
+//MINIMUM TIME TO MAKE ROPE COLORFUL (1578)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     string colors = "aabaa";
+//     vector<int> neededTime = {1,2,3,4,1};
+//     int result=0;
+//     int n=neededTime.size();
+//     for (int i=1;i<n;i++){
+//         if (colors[i]==colors[i-1]){
+//             result+=min(neededTime[i],neededTime[i-1]);
+//             //to keep max needed time if more than two consecutive same
+//         }
+//     }
+//     cout<<result;
+// }
+
+//H INDEX (274)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<int> citations = {3,0,6,1,5};
+//     int result=0;
+//     int n=citations.size();
+//     sort(citations.begin(),citations.end());
+//     for(int i=0;i<n;i++){
+//         int formula=n-i;
+//         if(citations[i]>=formula){
+//             result=formula;
+//             break;
+//         }
+//     }
+//     cout<<result;
+//     return 0;
+// }
+
+//FIRST UNIQUE CHARACTER IN A STRING (387)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     string s="loveleetcode";
+//     int result=INT_MAX;
+//     unordered_map<char,vector<int>> mpp;
+//     for(int i=0;i<s.length();i++){
+//         mpp[s[i]].push_back(i);//at s[i] value of map, push 'i' into array
+//     }
+//     for(auto &p:mpp){
+//         if(p.second.size()==1){
+//             result=min(result,p.second[0]);
+//         }
+//     }
+//     if(result==INT_MAX) cout<<-1;
+//     else cout<<result;
+// }
+
+//NIM GAME (274)
+// You lose only when n is a multiple of 4,because whatever number (1, 2, or 3) you remove,
+// your opponent can always remove enough to make the total removed = 4 each round.
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int n=3;
+//     ifn%4 != 0){
+//         cout<<"true";
+//     }else cout<<"false";
+// }
+
+//FIZZ BUZZ GAME (274)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<string> result;
+//     int n=4;
+//     for(int i=1;i<=n;i++){
+//         if(i%3==0 && i%5==0){
+//             string s="FizzBuzz";
+//             result.push_back(s);
+//         }
+//         else if(i%3==0){
+//             string s="Fizz";
+//             result.push_back(s);
+//         }
+//         else if(i%5==0){
+//             string s="Buzz";
+//             result.push_back(s);
+//         }
+//         else{
+//             result.push_back(to_string(i));
+//         }
+//     }
+//     for(auto &ch:result){
+//         cout<<ch;
+//     }
+// }
+
+//COUNT OPERATIONS TO OBTAIN ZERO (2169)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int find(int x,int y){
+//     if(x==0 || y==0) return 0;
+//     if(x>=y){
+//         return 1+ find(x-y,y);
+//     }else{
+//         return 1+ find(x,y-x);
+//     }
+// }
+// int main(){
+//     int num1 = 2, num2 = 3;
+//     cout<<find(num1,num2);
+// }
+
+//COUNT OPERATIONS TO OBTAIN ZERO (2169)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int solve(vector<pair<int,int>>&count,int m,int n,int index){
+//     if((index>count.size()) || (m==0 && n==0)){
+//         return 0;
+//     }
+//     int take=0;
+//     if(count[index].first<=m && count[index].second<=n){
+//         take=1+solve(count,m-count[index].first,n-count[index].second,index+1);
+//     }
+//     int nottake=solve(count,m,n,index+1);
+//     return max(take, nottake);
+// }
+// int main(){
+//     vector<string> strs = {"10","0001","111001","1","0"};
+//     int m = 5, n = 3;
+//     vector<pair<int,int>> count;
+//     int i=0;
+//     for(auto str:strs){
+//         int countZero=0,countOne=0;
+//         for(char s:str){
+//             if(s == '1'){
+//                 countOne++;
+//             }else if(s == '0'){
+//                 countZero++;
+//             }
+//         }
+//         count[i++]={countZero,countOne};
+//     }
+//     cout<<solve(count,m,n,0);
+// }
+
+//Maximum Number of Operations to Move Ones to the End (3228) (USING GREEDY)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     string s = "1001101";
+//     int ans=0;
+//     int countOnes=0;
+//     for(int i=0;i<s.length();i++){
+//         if(s[i]=='1'){
+//             countOnes++;
+//         }else if(s[i+1]=='1' || i+1==s.length()){
+//             ans+=countOnes;
+//         }
+//     }
+//     cout<<ans;
+// }
+
+//FLIP STRING TO MONOTONE INCREASE (926) (USING GREEDY)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     string s = "1001101";
+//     int ans=0;
+//     int countOnes=0;
+//     for(int i=0;i<s.length();i++){
+//         if(s[i]=='1'){
+//             countOnes++;
+//         }else if(s[i+1]=='1' || i+1==s.length()){
+//             ans+=countOnes;
+//         }
+//     }
+//     cout<<ans;
+// }
+
+//INCREMENT SUBMATRICES BY ONE (2536)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int n=3;
+//     vector<vector<int>>queries = {{1,1,2,2},{0,0,1,1}};
+//     vector<vector<int>> mat(n,vector<int>(n,0));//mat matrix to store result
+//     for(auto &q:queries){
+//         int row1,col1,row2,col2;
+//         row1=q[0];
+//         col1=q[1];
+//         row2=q[2];
+//         col2=q[3];
+//         for(int i=row1;i<row2;i++){//Using difference of array technique for 2D
+//             mat[i][col1]+=1;
+//             if(col2+1<n){
+//                 mat[i][col2+1]-=1;
+//             }
+//         }
+//     }
+//     for(int i=0;i<n;i++){//i for row
+//         for(int j=1;j<n;j++){// j for column
+//             mat[i][j]+=mat[i][j-1];//cummalative sum
+//         }
+//     }
+// }
+
+//
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int target=7;
+//     vector<int> candidates = {2,3,6,7};
+//     vector<vector<int>> answer;
+//     int n=candidates.size();
+//     int set=0;
+//     for(int i=n-1;i>=0;i--){
+//         if(candidates[i]==target){
+//             answer.push_back(target);
+//         }
+//     }
+// }
+
+//GREATEST SUM DIVISIBLE BY THREE (1262)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<int>nums={3,6,5,1,8};
+//     vector<int> dp(3);
+//     // dp[0] = best sum whose remainder is 0
+//     // dp[1] = best sum whose remainder is 1
+//     // dp[2] = best sum whose remainder is 2
+//     for (const int num : nums){
+//         for (const int sum : vector<int>(dp)){
+//             //For each sum find sum + num and update dp[rem] to be the best maximum.
+//             dp[(sum + num) % 3] = max(dp[(sum + num) % 3], sum + num);
+//             //(sum+num)%3 gives us remainder for each element of nums
+//         }
+//     }
+//     cout<<dp[0];
+// }
+
+//SMALLEST INTEGER DIVISIBLE BY K (1015)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int k=17;
+//     int res=0;
+//     for(int i=1;i<=k;i++){
+//         res=(res*10 + 1) % k;//modulo k(%k) here only so that,size of res dont go so high above computation
+//         if(res==0){
+//             cout<<i;
+//         }
+//     }
+//     if(k%2==0 || k%5==0) return -1;
+//     return -1;
+// }
+
+//MAKE SUM DIVISIBLE BY P (1590)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<int> nums={3,1,4,2}; 
+//     int p = 6,sum=0;
+//     for(int &val:nums){
+//         sum+=val;
+//     }
+//     int wanted=sum%p;
+//     if(wanted==0) cout<<"0";
+//     unordered_map<int,int> mp;
+//     //map stores Occurrence of modulo remainder.
+//     mp[0]=-1;//base condition { 0:-1 }
+//     int res=nums.size();
+//     long long prefix=0;
+//     for(int i=0;i<nums.size();i++){
+//         prefix=(prefix+nums[i])%p;
+//         int findPair=(prefix - wanted +p)%p;
+//         if(mp.count(findPair)){
+//             res=min(res,i-mp[findPair]);
+//         }
+//         mp[prefix]=i;
+//     }
+//     return res == nums.size() ? -1 : res;
+// }
+
+//COUNT COLLISIONS ON A ROAD (2211)
+//T.C = O(n); S.C = O(1)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     string directions = "LLRLRSLLRR";
+//     int res=0;
+//     int n=directions.length();
+//     int i=0;//left boundary
+//     int j=n-1;//right boundary
+//     //we need to remove head(if L) and trails(if R) as they are not going to create any difference
+//     while(i<n && directions[i]=='L'){
+//         i++;
+//     }
+//     while(j>=0 && directions[j]=='R'){
+//         j--;
+//     }
+//     while(i<=j){
+//         if(directions[i]!='S'){
+//         //we dont add one into result, when S appears as its collison is counted as R or L
+//             res++;
+//         }
+//         i++;
+//     }
+//     cout<<res;
+// }
+
+//COUNT SPECIAL TRIPLETS (3583)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int Mod=1e9+7;
+//     vector<int> nums = {8,4,2,8,4};
+// //idea is to select each element and check if its right and left side has twice of it
+//     int count=0;
+//     unordered_map<int,int>rightSide,leftSide;
+//     for(int &val:nums){
+//         rightSide[val]++;
+//         //initially have only rightSide Map
+//         //leftSide map increases one by one and so right Side decreases one by one
+//     }
+//     for(int num:nums){
+//         rightSide[num]--;//reduce frequencyof num by 1
+//         int left=leftSide[num*2];//value/frequency of num*2 element in left map
+//         int right=rightSide[num*2];//value/frequency of num*2 element in right map
+//         leftSide[num]++;//increase frequency of num by 1
+//         count=(count+(1LL*right*left))%Mod;
+//     }
+//     cout<<count;
+// }
+
+//Count the Number of Computer Unlocking Permutations (3577)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int Mod=1e9+7;
+//     vector<int> complexity = {3,3,3,4,4,4};
+//     long long count=1;
+//     for(int i=1;i<complexity.size();i++){//zero'th elemenmt will be there so we can skip
+//         if(complexity[i]<=complexity[0]){//condition can be noticed from example 1
+//             return 0;
+//         }
+//         count=(count*i)%Mod;//function to find factorial
+//     }
+//     cout<<count;
+// }
+
+//COUNT COVERED BUILDINGS (3531)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int  n = 3;
+//     int count=0;
+//     vector<vector<int>> buildings = {{1,2},{2,2},{3,2},{2,1},{2,3}};
+//     unordered_map<int, set<int>> rows;//store rows
+//     unordered_map<int, set<int>> cols;//store cols
+//     for (auto& b : buildings) {
+//         rows[b[1]].insert(b[0]); // row y → x positions
+//         cols[b[0]].insert(b[1]); // column x → y positions
+//     }
+//     for (auto& b : buildings) {
+//         int x = b[0], y = b[1];
+//         auto& row = rows[y];
+//         auto& col = cols[x];
+//         bool left  = *row.begin() < x;
+//         bool right = *row.rbegin() > x;
+//         bool below = *col.begin() < y;
+//         bool above = *col.rbegin() > y;
+//         if(left && right && above && below){//if all 4 conditions are true
+//             count++;
+//         }
+//     }
+//     cout<<count;
+// }
+
+//COUPON CODE VALIDATOR (3606)
+// #include <bits/stdc++.h>
+// using namespace std;
+// bool checkLine(string &businessLine){//to ckech valid businessLine
+//     return businessLine=="electronics"||
+//     businessLine=="grocery"||
+//     businessLine=="pharmacy"||
+//     businessLine=="restaurant";
+// }
+// bool checkCode(string &code) {//to ckeck sytactic properties of code
+//         for(char &ch : code) {
+//             if(!isalnum(ch) && ch != '_') {//we traverse code
+//                 return false;
+//             }
+//         }
+//         if(code.empty()){
+//             return false;
+//         }
+//         return true;
+//     }
+// int main(){
+//     vector<string> code = {"SAVE20","","PHARMA5","SAVE@20"};
+//     vector<string> businessLine = {"restaurant","grocery","pharmacy","restaurant"};
+//     vector<bool> isActive = {true,true,true,true};
+//     vector<string> result;
+//     for(int i=0;i<code.size();i++){
+//         if(isActive[i] && checkCode(code[i]) && checkLine(businessLine[i])){//if conditions met then push to result
+//             result.push_back(code[i]);
+//         }
+//     }
+//     sort(result.begin(),result.end());
+// }
+
+//Number of Ways to Divide a Long Corridor (2147)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     int Mod=1e9+7;
+//     string corridor = "PPSPSP";
+//     int countSeat=0;
+//     int countPlant=0;
+//     long long total=1;
+//     for(char &c:corridor){
+//         if(c=='S'){
+//             countSeat++;
+//             if(countSeat > 2 && countSeat % 2 == 1) {
+//                 total = (total * (countPlant + 1)) % Mod;
+//                 countPlant = 0;
+//             }
+//         }else if(countSeat>=2 && countSeat%2==0){
+//             countPlant++;
+//         }
+//     }
+//     //increemnt plants only after 2 seats have occured
+//     //minimum condition because if 2 seats not occured then no point of counting plants
+//     if(total%2==0){
+//          cout<<total;
+//     }else return 0;
+// }
+
+//NUMBER OF SMOOTH DESCENT PERIODS OF A STOCK (2110)
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<int> prices = {3,2,1,4};
+//     int n=prices.size();
+//     long long count=1;
+//     int result=1;
+//     for(int i=1;i<n;i++){
+//         if(prices[i-1]-prices[i]==1){//condition for descent
+//             count++;
+//         }else{
+//             count=1;
+//         }
+//         result+=count;
+//     }
+//     cout<<result;
+// }
+
+//DELETE COLUMN TO MAKE SORTED
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(){
+//     vector<string> strs = {"xc","yb","za"};
+//     int n=strs.size();
+//     int m=strs[0].size();
+//     int count=0;
+//     for(int i=0;i<m;i++){//to iterate through each word
+//         for(int j=1;j<n;j++){//to iterate through vector
+//             if(strs[j][i] >= strs[j-1][i]){
+//                 count=0;
+//             }
+//             if(strs[j][i] < strs[j-1][i]){
+//                 count++;
+//                 break;
+//             }
+//         }
+//     }
+//     cout<<count;
+// }
